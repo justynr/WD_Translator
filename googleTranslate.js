@@ -1,119 +1,7 @@
 const {Translate} = require('@google-cloud/translate').v2;
 const fs = require('fs');
 const fetch = require("node-fetch")
-
-
-const languages = {
-    "Afrikaans": "af",
-    "Albanian": "sq",
-    "Amharic": "am",
-    "Arabic": "ar",
-    "Armenian": "hy",
-    "Azerbaijani": "az",
-    "Basque": "eu",
-    "Belarusian": "be",
-    "Bengali": "bn",
-    "Bosnian": "bs",
-    "Bulgarian": "bg",
-    "Catalan": "ca",
-    "Cebuano": "ceb",
-    "Chinese_Simplified": "zh-CN",
-    "Chinese_Traditional": "zh-TW",
-    "Corsican": "co",
-    "Croatian": "hr",
-    "Czech": "cs",
-    "Danish": "da",
-    "Dutch": "nl",
-    "English": "en",
-    "Esperanto": "eo",
-    "Estonian": "et",
-    "Finnish": "fi",
-    "French": "fr",
-    "Frisian": "fy",
-    "Galician": "gl",
-    "Georgian": "ka",
-    "German": "de",
-    "Greek": "el",
-    "Gujarati": "gu",
-    "Haitian Creole": "ht",
-    "Hausa": "ha",
-    "Hawaiian": "haw",
-    "Hebrew": "he",
-    "Hindi": "hi",
-    "Hmong": "hmn",
-    "Hungarian": "hu",
-    "Icelandic": "is",
-    "Igbo": "ig",
-    "Indonesian": "id",
-    "Irish": "ga",
-    "Italian": "it",
-    "Japanese": "ja",
-    "Javanese": "jv",
-    "Kannada": "kn",
-    "Kazakh": "kk",
-    "Khmer": "km",
-    "Kinyarwanda": "rw",
-    "Korean": "ko",
-    "Kurdish": "ku",
-    "Kyrgyz": "ky",
-    "Lao": "lo",
-    "Latin": "la",
-    "Latvian": "lv",
-    "Lithuanian": "lt",
-    "Luxembourgish": "lb",
-    "Macedonian": "mk",
-    "Malagasy": "mg",
-    "Malay": "ms",
-    "Malayalam": "ml",
-    "Maltese": "mt",
-    "Maori": "mi",
-    "Marathi": "mr",
-    "Mongolian": "mn",
-    "Myanmar_Burmese": "my",
-    "Nepali": "ne",
-    "Norwegian": "no",
-    "Nyanja_Chichewa": "ny",
-    "Odia_Oriya": "or",
-    "Pashto": "ps",
-    "Persian": "fa",
-    "Polish": "pl",
-    "Portuguese": "pt",
-    "Punjabi": "pa",
-    "Romanian": "ro",
-    "Russian": "ru",
-    "Samoan": "sm",
-    "Scots_Gaelic": "gd",
-    "Serbian": "sr",
-    "Sesotho": "st",
-    "Shona": "sn",
-    "Sindhi": "sd",
-    "Sinhala_Sinhalese": "si",
-    "Slovak": "sk",
-    "Slovenian": "sl",
-    "Somali": "so",
-    "Spanish": "es",
-    "Sundanese": "su",
-    "Swahili": "sw",
-    "Swedish": "sv",
-    "Tagalog": "tl",
-    "Tajik": "tg",
-    "Tamil": "ta",
-    "Tatar": "tt",
-    "Telugu": "te",
-    "Thai": "th",
-    "Turkish": "tr",
-    "Turkmen": "tk",
-    "Ukrainian": "uk",
-    "Urdu": "ur",
-    "Uyghur": "ug",
-    "Uzbek": "uz",
-    "Vietnamese": "vi",
-    "Welsh": "cy",
-    "Xhosa": "xh",
-    "Yiddish": "yi",
-    "Yoruba": "yo",
-    "Zulu": "zu"
-  }
+const languages = require('./Util/langList')
 
 const projectId = 'main-reducer-305321';
 
@@ -128,20 +16,20 @@ if(myArgs === '') {
     console.log("NO LANGUAGE ARGUMENT!")
     console.log('')
     console.log("enter French as:")
-    console.log('')
     console.log('node googleTranslate fr')
     process.exit()
 }
 
-const sourcePath = '../../Localization/english.json'
-const outputPath = '../../Localization/'
+const sourcePath = './Localization/english.json'
+const outputPath = './Localization/'
 
 
 async function translateThis(sourceText, targetLanguageTag) {
-    console.log(`Source ${sourceText}`)
+
+  console.log(`Source ${sourceText}`)
   
-    const [translation] = await translate.translate(sourceText, targetLanguageTag);
-    //const translation = `bypass - ${sourceText}`;
+    //const [translation] = await translate.translate(sourceText, targetLanguageTag);
+    const translation = `bypass - ${sourceText}`;
     console.log(`Result ${translation}`)
     console.log(``)
 
@@ -154,7 +42,6 @@ function getKeyByValue(object, value) {
 }
 
 async function main() {
-//    console.log(JSON.stringify(languages))
     let jsonInput = fs.readFileSync(sourcePath)
     let input = JSON.parse(jsonInput)
     const targetLanguageLong = getKeyByValue(languages, myArgs).toLowerCase()

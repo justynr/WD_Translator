@@ -1,0 +1,40 @@
+{
+  "language": "french",
+  "code": "fr",
+  "localizationSettings": {},
+  "text": {
+    "interface": {
+      "HomePage_?_Lbl": "bypass - Home boy",
+      "Settings_Apply_?_Btn": "bypass - Set Settings",
+      "SettingsPG_D_Lbl": "bypass - System Settings",
+      "Set_CamName_Lbl": "bypass - Name",
+      "Set_CamIP_Lbl": "bypass - Camera IP",
+      "Set_CamType_Lbl": "bypass - Camera Type",
+      "Set_CamIndex_Lbl": "bypass - Camera Index",
+      "Settings_AddCamera_Btn": "bypass - Apply Camera Settings",
+      "Settings_DelCamera_Btn": "bypass - Delete Camera",
+      "Camera_Setting_Lbl": "bypass - Camera",
+      "Set_ProcessorIP_Lbl": "bypass - Processor IP",
+      "Settings_SetProcessor_Btn": "bypass - Apply Processor Settings",
+      "Set_ProcessorType_Lbl": "bypass - Processor Type",
+      "Recording_Enabled_Lbl": "bypass - Allow Recording",
+      "PresetSettings_Lbl": "bypass - Preset",
+      "PresetName_Lbl": "bypass - Preset Name",
+      "SetPresetNames_Btn": "bypass - Apply Preset Settings",
+      "PresetIndex_Lbl": "bypass - Preset Index",
+      "NewPreset_Btn": "bypass - Create New Preset",
+      "Love": "bypass - I love you, and your little dog too!"
+    },
+    "popups": {
+      "attention": "bypass - ATTENTION!",
+      "warning": "bypass - WARNING!",
+      "error": "bypass - ERROR!",
+      "success": "bypass - SUCCESS!",
+      "invalidJson": "bypass - This is not valid JSON",
+      "notJsonRoot": "bypass - This is not the ROOT of the JSON!",
+      "confirmSave": "bypass - Are you sure you want to overwrite the displayed variable",
+      "confirmExport": "bypass - Are you sure you want to overwrite the config file on disk?",
+      "saveSuccess": "bypass -  successfully saved!"
+    }
+  }
+}
