@@ -1,0 +1,40 @@
+{
+  "language": "english",
+  "code": "en",
+  "localizationSettings": {},
+  "text": {
+    "interface": {
+      "HomePage_?_Lbl": "Home boy",
+      "Settings_Apply_?_Btn": "Set Settings",
+      "SettingsPG_D_Lbl": "System Settings",
+      "Set_CamName_Lbl": "Name",
+      "Set_CamIP_Lbl": "Camera IP",
+      "Set_CamType_Lbl": "Camera Type",
+      "Set_CamIndex_Lbl": "Camera Index",
+      "Settings_AddCamera_Btn": "Apply Camera Settings",
+      "Settings_DelCamera_Btn": "Delete Camera",
+      "Camera_Setting_Lbl": "Camera",
+      "Set_ProcessorIP_Lbl": "Processor IP",
+      "Settings_SetProcessor_Btn": "Apply Processor Settings",
+      "Set_ProcessorType_Lbl": "Processor Type",
+      "Recording_Enabled_Lbl": "Allow Recording",
+      "PresetSettings_Lbl": "Preset",
+      "PresetName_Lbl": "Preset Name",
+      "SetPresetNames_Btn": "Apply Preset Settings",
+      "PresetIndex_Lbl": "Preset Index",
+      "NewPreset_Btn": "Create New Preset",
+      "Love": "I love you, and your little dog too!"
+    },
+    "popups": {
+      "attention": "ATTENTION!",
+      "warning": "WARNING!",
+      "error": "ERROR!",
+      "success": "SUCCESS!",
+      "invalidJson": "This is not valid JSON",
+      "notJsonRoot": "This is not the ROOT of the JSON!",
+      "confirmSave": "Are you sure you want to overwrite the displayed variable",
+      "confirmExport": "Are you sure you want to overwrite the config file on disk?",
+      "saveSuccess": " successfully saved!"
+    }
+  }
+}
