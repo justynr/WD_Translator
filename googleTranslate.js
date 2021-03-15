@@ -1,14 +1,31 @@
 const {Translate} = require('@google-cloud/translate').v2;
 const fs = require('fs');
-const fetch = require("node-fetch")
 const languages = require('./Util/langList')
 
 const projectId = 'main-reducer-305321';
 
+
+/* 
+ *********************************************
+ Process Variables!
+
+ *********************************************
+*/
+
+
+//change to true if testing
+const bypass = false
+
+const sourcePath = './Localization/english.json'
+const outputPath = './Localization/'
+
+
+
 const translate = new Translate({
-    projectId, 
-    keyFilename: './googleApiKey.json'
+  projectId, 
+  keyFilename: './Util/googleApiKey.json'
 });
+
 
 const myArgs = process.argv.slice(2).toString();
 if(myArgs === '') {
@@ -20,20 +37,20 @@ if(myArgs === '') {
     process.exit()
 }
 
-const sourcePath = './Localization/english.json'
-const outputPath = './Localization/'
-
-
 async function translateThis(sourceText, targetLanguageTag) {
-
-  console.log(`Source ${sourceText}`)
+  let translation;
   
-    //const [translation] = await translate.translate(sourceText, targetLanguageTag);
-    const translation = `bypass - ${sourceText}`;
-    console.log(`Result ${translation}`)
-    console.log(``)
+  // reads "bypass" variable - if true no calls to Google are made
+  if(bypass) {
+    translation = `bypass - ${sourceText}`;
+  } else {
+    [translation] = await translate.translate(sourceText, targetLanguageTag);
+  }
+  console.log(``)
+  console.log(`Source:  ${sourceText}`)
+  console.log(`Result:  ${translation} ----`)
 
-    return translation
+  return translation
 }
 
 function getKeyByValue(object, value) { 
@@ -46,23 +63,20 @@ async function main() {
     let input = JSON.parse(jsonInput)
     const targetLanguageLong = getKeyByValue(languages, myArgs).toLowerCase()
     const targetLanguageTag = myArgs
-    //console.log(JSON.stringify(input, null, 2))
-    // for (i = 0; i < Object.values(languages).length; i++) {
-      //let targetLanguageTag = Object.values(languages)
-      console.log(`TRANSLATING INTO ${targetLanguageLong.toUpperCase()} - - - ${targetLanguageTag}`)
-      let output = {...input};
-      let entries;
-      let valueObj = {};
-      for (t = 0; t < Object.entries(input.text).length; t++) {
-        let masterKey = Object.keys(input.text)[t]
-        entries = Object.entries(input.text[masterKey]);
-        for (let v of entries) {
-            v[1] = await translateThis(v[1], targetLanguageTag);
-          }
-        valueObj[masterKey] = Object.fromEntries(entries);
-        output.text = {...valueObj};
-      }
-      // output = {...input, text: value: Object.fromEntries(entries)}};
+
+    console.log(`TRANSLATING INTO ${targetLanguageLong.toUpperCase()} - - - ${targetLanguageTag}`)
+    let output = {...input};
+    let entries;
+    let valueObj = {};
+    for (t = 0; t < Object.entries(input.text).length; t++) {
+      let masterKey = Object.keys(input.text)[t]
+      entries = Object.entries(input.text[masterKey]);
+      for (let v of entries) {
+          v[1] = await translateThis(v[1], targetLanguageTag);
+        }
+      valueObj[masterKey] = Object.fromEntries(entries);
+      output.text = {...valueObj};
+    }
       output.language = targetLanguageLong
       output.code = targetLanguageTag
       console.log('')
@@ -70,12 +84,9 @@ async function main() {
       console.log('')
       console.log('')
       fs.writeFileSync(`${outputPath}${targetLanguageLong}.json`, JSON.stringify(output, null, 2));
-    
+      console.log('DONE!')
+
   }
-
-
-
-
 
 
 main();
